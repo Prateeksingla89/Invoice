@@ -1,0 +1,99 @@
+﻿@model POC.Models.Invoice
+
+@using (Html.BeginForm("Save", "Invoice", FormMethod.Post, htmlAttributes: new { @class = "form-inline" }))
+{
+
+<div class="form-horizontal">
+    <h2 class="text-center">@Model.Title</h2>
+    <hr />
+    <h4 class="text-danger">Customer Details</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.InvoiceNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.InvoiceNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.InvoiceNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustomerName, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.CustomerName, "{0:d MMM yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-6">
+            @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Item</button>
+    @Html.Partial("_AddNewInvoiceLines", Model)
+    <hr />
+    <h4 class="text-danger">Invoice Details</h4>
+    <hr />
+    @if (Model.InvoiceLines.Count > 0)
+    {
+        @Html.Partial("_InvoiceLines", Model)
+    }
+    else
+    {
+    <table id="maintable" class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Unit Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="contacts-record-template"></tr>
+        </tbody>
+    </table>
+    }
+
+
+    @Html.HiddenFor(m => m.InvoiceID)
+    @Html.AntiForgeryToken()
+
+
+    <button type="submit" class="btn btn-danger pull-right">Save</button>
+</div>
+}
+
+     <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", ".classAdd", function () { //
+            var rowCount = $('.contacts-record-template').length - 1;
+            //to get values from popup
+            var ItemName = $('#ItemName').val();
+            var ItemDescription = $('#ItemDescription').val();
+            var Quantity = $('#Quantity').val();
+            var Value = $('#Value').val();
+            var contactdiv = '<tr class="contacts-record-template">' +
+                '<td> <input class="form-control text-box single-line" data-val="true" data-val-length="The field Item must be a string with a maximum length of 255." data-val-length-max="255" data-val-required="The Item field is required." id="InvoiceLines_' + rowCount + '__ItemName" name="InvoiceLines[' + rowCount + '].ItemName" type="text" value=' + ItemName + '></td>' +
+                '<td> <input class="form-control text-box single-line" id="InvoiceLines_' + rowCount + '__ItemDescription" name="InvoiceLines[' + rowCount + '].ItemDescription" type="text" value=' + ItemDescription + '></td>' +
+                '<td> <input class="form-control text-box single-line" data-val="true" data-val-number="The field Quantity must be a number." data-val-required="The Quantity field is required." id="InvoiceLines_' + rowCount + '__Quantity" name="InvoiceLines[' + rowCount + '].Quantity" type="number" value=' + Quantity + ' ></td>' +
+                '<td> <input class="form-control text-box single-line" data-val="true" data-val-number="The field Value must be a number." data-val-required="The Value field is required." id="InvoiceLines_' + rowCount + '__Value" name="InvoiceLines[' + rowCount + '].Value" type="text" value=' + Value + ' ></td>' +
+                '<td><input data-val="true" data-val-number="The field InvoiceLineId must be a number." data-val-required="The InvoiceLineId field is required." htmlattributes="{ class = form-control }" id="InvoiceLines_' + rowCount + '__InvoiceLineId" name="InvoiceLines[' + rowCount + '].InvoiceLineId" type="hidden" value=' + (rowCount + 1) + '></td>' +
+                '</tr>';
+
+            $('#maintable').append(contactdiv); // Adding these controls to Main table class
+        });
+    });
+</script>  

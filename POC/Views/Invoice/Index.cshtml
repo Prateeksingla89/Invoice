@@ -1,0 +1,58 @@
+﻿@model IEnumerable<POC.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.ActionLink("Add New Invoice", "Invoice", new { @class = "btn btn-primary" })
+
+<table  class="table table-bordered table-hover">
+    <thead>
+        
+        @{
+
+            foreach (var item in Model)
+            {
+             
+        <tr>
+            @*<th>InoiceId:@item.InvoiceID</th>*@
+            <th>Invoice Number:@item.InvoiceNumber</th>
+            <th>Customer Name:@item.CustomerName</th>
+            <th>Customer Address:@item.Address</th>
+            <th>Invoice Date:@item.InvoiceDate</th>
+            <th>@Html.ActionLink("Edit","Edit",new { InvoiceID=item.InvoiceID }) </th>
+        </tr>
+                <tr>
+                    <td colspan="5">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>ItemName</th>
+                                <th>ItemDescription</th>
+                                <th>Quantity</th>
+                                <th>Value</th>
+                            </tr>
+
+                            @for (int i = 0; i < item.InvoiceLines.Count; i++)
+                            {
+                                <tr>
+                                    <td>@item.InvoiceLines[i].ItemName</td>
+                                    <td>@item.InvoiceLines[i].ItemDescription</td>
+                                    <td>@item.InvoiceLines[i].Quantity</td>
+                                    <td>@item.InvoiceLines[i].Value</td>
+                                </tr>
+                           }
+                               
+                            </table>
+                    </td>
+                </tr>
+
+            }
+
+             
+        }
+
+        </thead>
+
+</table>
+
+

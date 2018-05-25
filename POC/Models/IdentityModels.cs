@@ -22,6 +22,7 @@ namespace POC.Models
     {
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceLine> InvoiceLines { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public ApplicationDbContext()
             : base("POCNEW", throwIfV1Schema: false)

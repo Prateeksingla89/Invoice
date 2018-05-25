@@ -191,12 +191,17 @@
     <Compile Include="Migrations\201805251636068_addCustomerAddress.Designer.cs">
       <DependentUpon>201805251636068_addCustomerAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805251904399_addProductTable.cs" />
+    <Compile Include="Migrations\201805251904399_addProductTable.Designer.cs">
+      <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\InvoiceLine.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\InvoiceViewModel.cs" />
@@ -285,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805251636068_addCustomerAddress.resx">
       <DependentUpon>201805251636068_addCustomerAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805251904399_addProductTable.resx">
+      <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

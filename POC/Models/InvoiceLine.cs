@@ -14,10 +14,10 @@ namespace POC.Models
 
         [Required]
         [StringLength(255)]
-        [DisplayName("Item")]
+        [DisplayName("Product Name")]
         public string ItemName { get; set; }
 
-        [DisplayName("Description")]
+        [DisplayName("Product Description")]
         public string ItemDescription { get; set; }
 
         [Required]

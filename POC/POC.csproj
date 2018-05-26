@@ -168,10 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DynamicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201805251904399_addProductTable.cs" />
     <Compile Include="Migrations\201805251904399_addProductTable.Designer.cs">
       <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805260442490_ProductTableChange.cs" />
+    <Compile Include="Migrations\201805260442490_ProductTableChange.Designer.cs">
+      <DependentUpon>201805260442490_ProductTableChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -265,8 +269,12 @@
     <Content Include="Views\Invoice\InvoiceForm.cshtml" />
     <Content Include="Views\Shared\_InvoiceLines.cshtml" />
     <Content Include="Views\Shared\_AddNewInvoiceLines.cshtml" />
-    <Content Include="Views\Dynamic\DynamicRow.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805251904399_addProductTable.resx">
       <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805260442490_ProductTableChange.resx">
+      <DependentUpon>201805260442490_ProductTableChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

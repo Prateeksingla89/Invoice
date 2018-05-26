@@ -37,6 +37,11 @@ namespace POC.Models
         public List<InvoiceLine> InvoiceLines { get; set; }
 
 
+        public Invoice()
+        {
+            InvoiceID = 0;
+        }
+
         public String Title
         {
             get

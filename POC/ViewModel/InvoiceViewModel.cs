@@ -11,7 +11,7 @@ namespace POC.ViewModel
 
 
         public List<InvoiceLine> invoiceLines { get; set; }
-        public Product products { get; set; }
+        public IEnumerable<Product> products { get; set; }
         public Invoice invoices { get; set; }
 
 

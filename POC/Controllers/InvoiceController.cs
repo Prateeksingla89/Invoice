@@ -46,7 +46,7 @@ namespace POC.Controllers
 
 
         // GET: Invoice
-        public ActionResult Invoice()
+        public ActionResult InvoiceForm()
         {
             var InvoiceLines = _context.InvoiceLines.ToList();
             Invoice viewModel = new Invoice
@@ -75,6 +75,8 @@ namespace POC.Controllers
                 {
                     InvoiceNumber = invoices.InvoiceNumber,
                     InvoiceDate = DateTime.Now,
+                    CustomerName=invoices.CustomerName,
+                    Address=invoices.Address,
                     InvoiceLines = invoices.InvoiceLines
                 };
                 _context.Invoices.Add(invoiceInDb);
@@ -104,7 +106,7 @@ namespace POC.Controllers
 
             }
             _context.SaveChanges();
-            return RedirectToAction("Invoice");
+            return RedirectToAction("InvoiceForm");
         }
 
 

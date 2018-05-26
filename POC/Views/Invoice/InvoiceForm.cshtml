@@ -1,4 +1,4 @@
-﻿@model POC.ViewModel.InvoiceViewModel
+﻿@model POC.Models.Invoice
 
 @using (Html.BeginForm("Save", "Invoice", FormMethod.Post, htmlAttributes: new { @class = "form-inline" }))
 {
@@ -38,12 +38,6 @@
     <hr />
     <h4 class="text-danger">Invoice Details</h4>
     <hr />
-    @if (Model.InvoiceLines.Count > 0)
-    {
-        @Html.Partial("_InvoiceLines", Model)
-    }
-    else
-    {
     <table id="maintable" class="table table-responsive table-striped">
         <thead>
             <tr>
@@ -54,10 +48,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="contacts-record-template"></tr>
+          
+            @if (Model.InvoiceLines.Count > 0)
+            {
+
+                for (int i = 0; i < Model.InvoiceLines.Count; i++)
+                {
+                    <tr class="contacts-record-template">
+                        <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control" } })</td>
+                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control" } })</td>
+                    </tr>
+                }
+            }
+            else
+            {                
+                <tr class="contacts-record-template"></tr>
+            }
+
         </tbody>
     </table>
-    }
+    
 
 
     @Html.HiddenFor(m => m.InvoiceID)
@@ -79,12 +91,14 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).on("click", ".classAdd", function () { //
-            var rowCount = $('.contacts-record-template').length - 1;
+            var spanValue = $('.values').val();          
+            var rowCount = $('.contacts-record-template').length - 1;          
             //to get values from popup
             var ItemName = $('#ItemName').val();
             var ItemDescription = $('#ItemDescription').val();
             var Quantity = $('#Quantity').val();
             var Value = $('#Value').val();
+
             var contactdiv = '<tr class="contacts-record-template">' +
                 '<td> <input class="form-control text-box single-line" data-val="true" data-val-length="The field Item must be a string with a maximum length of 255." data-val-length-max="255" data-val-required="The Item field is required." id="InvoiceLines_' + rowCount + '__ItemName" name="InvoiceLines[' + rowCount + '].ItemName" type="text" value=' + ItemName + '></td>' +
                 '<td> <input class="form-control text-box single-line" id="InvoiceLines_' + rowCount + '__ItemDescription" name="InvoiceLines[' + rowCount + '].ItemDescription" type="text" value=' + ItemDescription + '></td>' +

@@ -13,7 +13,7 @@ namespace POC.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201805251904399_addProductTable"; }
+            get { return "201805261758262_addProductTable"; }
         }
         
         string IMigrationMetadata.Source

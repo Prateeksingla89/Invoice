@@ -18,14 +18,5 @@ namespace POC.Models
         [DisplayName("Product Name")]
         public string Name { get; set; }
 
-        [MaxLength(500)]
-        [DisplayName("Product Discription")]
-        public string Discription { get; set; }
-
-        [DisplayName("Product Price")]
-        public decimal price { get; set; }
-
-        [Required]
-        public int GstTax { get; set; }
     }
 }

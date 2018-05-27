@@ -28,9 +28,20 @@ namespace POC.Migrations
                     {
                         InvoiceID = c.Int(nullable: false, identity: true),
                         InvoiceNumber = c.String(nullable: false, maxLength: 30),
+                        CustomerName = c.String(nullable: false, maxLength: 30),
                         InvoiceDate = c.DateTime(nullable: false, storeType: "date"),
+                        Address = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.InvoiceID);
+            
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        ProductId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 250),
+                    })
+                .PrimaryKey(t => t.ProductId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -121,6 +132,7 @@ namespace POC.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Products");
             DropTable("dbo.Invoices");
             DropTable("dbo.InvoiceLines");
         }

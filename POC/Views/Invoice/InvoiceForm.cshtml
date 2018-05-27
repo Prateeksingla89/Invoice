@@ -1,4 +1,4 @@
-﻿@model POC.Models.Invoice
+﻿@model POC.ViewModel.InvoiceViewModel
 
 @using (Html.BeginForm("Save", "Invoice", FormMethod.Post, htmlAttributes: new { @class = "form-inline" }))
 {
@@ -41,8 +41,8 @@
     <table id="maintable" class="table table-responsive table-striped">
         <thead>
             <tr>
-                <th>Item</th>
-                <th>Description</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
                 <th>Qty</th>
                 <th>Unit Value</th>
             </tr>
@@ -54,12 +54,17 @@
 
                 for (int i = 0; i < Model.InvoiceLines.Count; i++)
                 {
-                    <tr class="contacts-record-template">
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control" } })</td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control" } })</td>
-                    </tr>
+            <tr class="contacts-record-template">
+                <td>
+                    @Html.DropDownListFor(model => model.InvoiceLines[i].ProductId, new SelectList(Model.products, "ProductId", "Name"), " Select Product", new {@id = "ProductId" + i, @class = "form-control" })
+                </td>
+                @*<td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>*@
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control" } })</td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control" } })</td>
+
+
+            </tr>
                 }
             }
             else

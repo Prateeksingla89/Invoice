@@ -171,33 +171,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805040747501_init.cs" />
-    <Compile Include="Migrations\201805040747501_init.Designer.cs">
-      <DependentUpon>201805040747501_init.cs</DependentUpon>
+    <Compile Include="Migrations\201805261327339_init.cs" />
+    <Compile Include="Migrations\201805261327339_init.Designer.cs">
+      <DependentUpon>201805261327339_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805100544195_removeDateComputation.cs" />
-    <Compile Include="Migrations\201805100544195_removeDateComputation.Designer.cs">
-      <DependentUpon>201805100544195_removeDateComputation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805241645549_customerInvoice.cs" />
-    <Compile Include="Migrations\201805241645549_customerInvoice.Designer.cs">
-      <DependentUpon>201805241645549_customerInvoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805251636068_addCustomerAddress.cs" />
-    <Compile Include="Migrations\201805251636068_addCustomerAddress.Designer.cs">
-      <DependentUpon>201805251636068_addCustomerAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805251904399_addProductTable.cs" />
-    <Compile Include="Migrations\201805251904399_addProductTable.Designer.cs">
-      <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805260442490_ProductTableChange.cs" />
-    <Compile Include="Migrations\201805260442490_ProductTableChange.Designer.cs">
-      <DependentUpon>201805260442490_ProductTableChange.cs</DependentUpon>
+    <Compile Include="Migrations\201805261758262_addProductTable.cs" />
+    <Compile Include="Migrations\201805261758262_addProductTable.Designer.cs">
+      <DependentUpon>201805261758262_addProductTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,11 +253,6 @@
     <Content Include="Views\Shared\_InvoiceLines.cshtml" />
     <Content Include="Views\Shared\_AddNewInvoiceLines.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,23 +265,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805040747501_init.resx">
-      <DependentUpon>201805040747501_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805261327339_init.resx">
+      <DependentUpon>201805261327339_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805100544195_removeDateComputation.resx">
-      <DependentUpon>201805100544195_removeDateComputation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805241645549_customerInvoice.resx">
-      <DependentUpon>201805241645549_customerInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805251636068_addCustomerAddress.resx">
-      <DependentUpon>201805251636068_addCustomerAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805251904399_addProductTable.resx">
-      <DependentUpon>201805251904399_addProductTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805260442490_ProductTableChange.resx">
-      <DependentUpon>201805260442490_ProductTableChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805261758262_addProductTable.resx">
+      <DependentUpon>201805261758262_addProductTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

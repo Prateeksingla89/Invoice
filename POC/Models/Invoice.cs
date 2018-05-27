@@ -36,6 +36,8 @@ namespace POC.Models
 
         public List<InvoiceLine> InvoiceLines { get; set; }
 
+       // public List<Product> products { get; set; }
+
 
         public Invoice()
         {

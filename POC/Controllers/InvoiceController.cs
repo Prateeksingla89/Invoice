@@ -37,22 +37,11 @@ namespace POC.Controllers
         // GET: Invoice
         public ActionResult Edit(int invoiceID)
         {
-            var allDetails = _context.Invoices
-                            .Include(m=>m.InvoiceLines)
-                            .Where(m => m.InvoiceID == invoiceID)
-                            .FirstOrDefault();
-            int productId = _context.InvoiceLines.Include(m => m.Product).Select(p => p.ProductId).FirstOrDefault();
-
-            var product = _context.Products.Where(m => m.ProductId == productId).ToList();
-
+            var allDetails = _context.Invoices.SingleOrDefault(m => m.InvoiceID == invoiceID);
             var viewModel = new InvoiceViewModel(allDetails)
             {
-
-                products= product,
+                productsList = _context.Products.ToList(),                
                 InvoiceLines = _context.InvoiceLines.Where(m => m.InvoiceID == invoiceID).ToList()//new List<InvoiceLine>()
-                //ProductId = _context.InvoiceLines.Where(m => m.InvoiceID == invoiceID).Select(m => m.Product.ProductId).FirstOrDefault()
-
-
             };
             return View("InvoiceForm", viewModel);
         }
@@ -61,12 +50,12 @@ namespace POC.Controllers
         // GET: Invoice
         public ActionResult InvoiceForm()
         {
-            // var InvoiceLines = _context.InvoiceLines.ToList();
          
             var viewModel = new InvoiceViewModel
             {
-                products = _context.Products.ToList(),
-                InvoiceLines = _context.InvoiceLines.ToList()//new List<InvoiceLine>()
+                
+                InvoiceLines = new List<InvoiceLine>(),/*_context.InvoiceLines.ToList(),*/
+                productsList =_context.Products.ToList()
 
             };
             return View("InvoiceForm", viewModel);
@@ -80,9 +69,7 @@ namespace POC.Controllers
             {
                 var viewModel = new InvoiceViewModel(invoices)
                 {
-                    products = _context.Products.ToList()
-                    
-                    
+                    productsList = _context.Products.ToList()
                 };
                 return View("InvoiceForm", viewModel);
             }

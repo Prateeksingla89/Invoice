@@ -5,17 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using POC.Models;
 
 namespace POC.ViewModel
 {
     public class InvoiceViewModel
     {
-
-
-       // public List<InvoiceLine> invoiceLines { get; set; }
-        public List<Product> products { get; set; }
-
+       
+        public List<Product> productsList { get; set; }
+        public List<InvoiceLine> InvoiceLines { get; set; }
 
         public int InvoiceID { get; set; }
 
@@ -38,10 +37,6 @@ namespace POC.ViewModel
 
         [Required]
         public string Address { get; set; }
-
-        public List<InvoiceLine> InvoiceLines { get; set; }
-
-      //  public List<Product> productsList { get; set; }
 
         [Required]
         [Display(Name = "Product")]
@@ -69,7 +64,7 @@ namespace POC.ViewModel
             InvoiceDate = DateTime.Now;
             Address = invoice.Address;
             //ProductId = invoice.InvoiceLines[0].ProductId;
-            InvoiceLines = new List<InvoiceLine>();
+            //InvoiceLines = new List<InvoiceLine>();
         }
     }
 }

@@ -56,7 +56,7 @@
                 {
             <tr class="contacts-record-template">
                 <td>
-                    @Html.DropDownListFor(model => model.InvoiceLines[i].ProductId, new SelectList(Model.products, "ProductId", "Name"), " Select Product", new {@id = "ProductId" + i, @class = "form-control" })
+                    @Html.DropDownListFor(model => model.InvoiceLines[i].ProductId, new SelectList(Model.productsList, "ProductId", "Name", Model.InvoiceLines[i].ProductId), new {@id = "ProductId" + i, @class = "form-control" })
                 </td>
                 @*<td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>*@
                 <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>

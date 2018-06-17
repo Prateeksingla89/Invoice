@@ -38,10 +38,6 @@ namespace POC.ViewModel
         [Required]
         public string Address { get; set; }
 
-        [Required]
-        [Display(Name = "Product")]
-        public int ProductId { get; set; }
-
         public InvoiceViewModel()
         {
             InvoiceID = 0;
@@ -56,15 +52,15 @@ namespace POC.ViewModel
         }
 
 
-        public InvoiceViewModel(Invoice invoice)
-        {
-            InvoiceID = invoice.InvoiceID;
-            InvoiceNumber = invoice.InvoiceNumber;
-            CustomerName = invoice.CustomerName;
-            InvoiceDate = DateTime.Now;
-            Address = invoice.Address;
-            //ProductId = invoice.InvoiceLines[0].ProductId;
-            //InvoiceLines = new List<InvoiceLine>();
-        }
+        //public InvoiceViewModel(Invoice invoice)
+        //{
+        //    InvoiceID = invoice.InvoiceID;
+        //    InvoiceNumber = invoice.InvoiceNumber;
+        //    CustomerName = invoice.CustomerName;
+        //    InvoiceDate = DateTime.Now;
+        //    Address = invoice.Address;
+        //    //ProductId = invoice.InvoiceLines[0].ProductId;
+        //    //InvoiceLines = new List<InvoiceLine>();
+        //}
     }
 }

@@ -12,11 +12,6 @@ namespace POC.Models
         [Required]
         public int InvoiceLineId { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        [DisplayName("Product Name")]
-        public string ItemName { get; set; }
-
         [DisplayName("Product Description")]
         public string ItemDescription { get; set; }
 

@@ -7,8 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using POC.ViewModel;
-
-
+using System.Data.Entity.Validation;
 
 namespace POC.Controllers
 {
@@ -30,6 +29,7 @@ namespace POC.Controllers
         public ActionResult Index()
         {
             var allDetails = _context.Invoices.Include(m => m.InvoiceLines).ToList();
+            ViewBag.productDetails = _context.Products.ToList();
             return View(allDetails);
 
         }
@@ -38,10 +38,15 @@ namespace POC.Controllers
         public ActionResult Edit(int invoiceID)
         {
             var allDetails = _context.Invoices.SingleOrDefault(m => m.InvoiceID == invoiceID);
-            var viewModel = new InvoiceViewModel(allDetails)
+            var viewModel = new InvoiceViewModel
             {
+                InvoiceNumber=allDetails.InvoiceNumber,
+                CustomerName=allDetails.CustomerName,
+                Address=allDetails.Address,
+                InvoiceDate=allDetails.InvoiceDate,
+                InvoiceID=allDetails.InvoiceID,
                 productsList = _context.Products.ToList(),                
-                InvoiceLines = _context.InvoiceLines.Where(m => m.InvoiceID == invoiceID).ToList()//new List<InvoiceLine>()
+                InvoiceLines = _context.InvoiceLines.Where(m => m.InvoiceID == invoiceID).ToList()
             };
             return View("InvoiceForm", viewModel);
         }
@@ -54,7 +59,7 @@ namespace POC.Controllers
             var viewModel = new InvoiceViewModel
             {
                 
-                InvoiceLines = new List<InvoiceLine>(),/*_context.InvoiceLines.ToList(),*/
+                InvoiceLines =new List<InvoiceLine>(),// _context.InvoiceLines.ToList(), 
                 productsList =_context.Products.ToList()
 
             };
@@ -67,24 +72,16 @@ namespace POC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new InvoiceViewModel(invoices)
+                var viewModel = new InvoiceViewModel
                 {
-                    productsList = _context.Products.ToList()
+                    productsList = _context.Products.ToList(),
+                    InvoiceLines = new List<InvoiceLine>()
                 };
                 return View("InvoiceForm", viewModel);
             }
             if (invoices.InvoiceID == 0)
             {
-                Invoice invoiceInDb = new Invoice
-                {
-                    InvoiceNumber = invoices.InvoiceNumber,
-                    InvoiceDate = DateTime.Now,
-                    CustomerName=invoices.CustomerName,
-                    Address=invoices.Address,
-                    InvoiceLines = invoices.InvoiceLines
-                    
-                };
-                _context.Invoices.Add(invoiceInDb);
+                _context.Invoices.Add(invoices);
             }
             else
             {
@@ -96,24 +93,26 @@ namespace POC.Controllers
                 invoiceInDb.InvoiceDate = invoices.InvoiceDate;
                 invoiceInDb.CustomerName = invoices.CustomerName;
                 invoiceInDb.Address = invoices.Address;
+                invoiceInDb.InvoiceLines = invoices.InvoiceLines;
                
-                if (invoiceInDb.InvoiceLines.Count > 0)
+            }
+            try
+            {
+
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
-                    int i = 0;
-                    foreach (var item in invoiceInDb.InvoiceLines)
+                    foreach (var validationError in validationErrors.ValidationErrors)
                     {
-                        item.ItemName = invoices.InvoiceLines[i].ItemName;
-                        item.ItemDescription = invoices.InvoiceLines[i].ItemDescription;
-                        item.Quantity = invoices.InvoiceLines[i].Quantity;
-                        item.Value = invoices.InvoiceLines[i].Value;
-                        item.ProductId = invoices.InvoiceLines[i].ProductId;
-                        i++;
+                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
                     }
                 }
-
             }
-            _context.SaveChanges();
-            return RedirectToAction("InvoiceForm");
+              
+            return RedirectToAction("Index");
         }
 
 

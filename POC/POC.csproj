@@ -182,6 +182,14 @@
     <Compile Include="Migrations\201805261758262_addProductTable.Designer.cs">
       <DependentUpon>201805261758262_addProductTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806170412300_itemNameRequiredFieldRemove.cs" />
+    <Compile Include="Migrations\201806170412300_itemNameRequiredFieldRemove.Designer.cs">
+      <DependentUpon>201806170412300_itemNameRequiredFieldRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806170717269_removeItemNameFeild.cs" />
+    <Compile Include="Migrations\201806170717269_removeItemNameFeild.Designer.cs">
+      <DependentUpon>201806170717269_removeItemNameFeild.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -270,6 +278,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805261758262_addProductTable.resx">
       <DependentUpon>201805261758262_addProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170412300_itemNameRequiredFieldRemove.resx">
+      <DependentUpon>201806170412300_itemNameRequiredFieldRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170717269_removeItemNameFeild.resx">
+      <DependentUpon>201806170717269_removeItemNameFeild.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

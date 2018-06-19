@@ -28,6 +28,9 @@ namespace POC.ViewModel
         [DisplayName("Customer Name")]
         public string CustomerName { get; set; }
 
+        [DisplayName("Customer Description")]
+        public string CustomerDescription { get; set; }
+
         [Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]

@@ -27,7 +27,7 @@
                         <table class="table table-bordered table-hover">
                             <tr>
                                 <th>Product Name</th>
-                                <th>ItemDescription</th>
+                               
                                 <th>Quantity</th>
                                 <th>Value</th>
                             </tr>
@@ -39,7 +39,7 @@
                                         @Html.DropDownListFor(model => item.InvoiceLines[i].ProductId, new SelectList(ViewBag.productDetails, "ProductId", "Name", item.InvoiceLines[i].ProductId), new { @id = "ProductId" + i, @class = "form-control" })
                                     </td>
                                   
-                                    <td>@item.InvoiceLines[i].ItemDescription</td>
+                                    
                                     <td>@item.InvoiceLines[i].Quantity</td>
                                     <td>@item.InvoiceLines[i].Value</td>
                                 </tr>

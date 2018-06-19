@@ -42,7 +42,8 @@ namespace POC.Controllers
             {
                 InvoiceNumber=allDetails.InvoiceNumber,
                 CustomerName=allDetails.CustomerName,
-                Address=allDetails.Address,
+                CustomerDescription = allDetails.CustomerDescription,
+                Address =allDetails.Address,
                 InvoiceDate=allDetails.InvoiceDate,
                 InvoiceID=allDetails.InvoiceID,
                 productsList = _context.Products.ToList(),                
@@ -59,11 +60,20 @@ namespace POC.Controllers
             var viewModel = new InvoiceViewModel
             {
                 
-                InvoiceLines =new List<InvoiceLine>(),// _context.InvoiceLines.ToList(), 
+                InvoiceLines =/*_context.InvoiceLines.ToList(),*/ new List<InvoiceLine>(),
                 productsList =_context.Products.ToList()
 
             };
             return View("InvoiceForm", viewModel);
+        }
+
+        // GET: Invoice
+        public JsonResult getTax(int ProductId)
+        {
+
+            var productTax = _context.Products.SingleOrDefault(m => m.ProductId == ProductId);
+
+            return Json(productTax, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -92,6 +102,7 @@ namespace POC.Controllers
                 invoiceInDb.InvoiceNumber = invoices.InvoiceNumber;
                 invoiceInDb.InvoiceDate = invoices.InvoiceDate;
                 invoiceInDb.CustomerName = invoices.CustomerName;
+                invoiceInDb.CustomerName = invoices.CustomerDescription;
                 invoiceInDb.Address = invoices.Address;
                 invoiceInDb.InvoiceLines = invoices.InvoiceLines;
                

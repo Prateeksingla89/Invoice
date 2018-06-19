@@ -190,6 +190,22 @@
     <Compile Include="Migrations\201806170717269_removeItemNameFeild.Designer.cs">
       <DependentUpon>201806170717269_removeItemNameFeild.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806171143088_addTaxProduct.cs" />
+    <Compile Include="Migrations\201806171143088_addTaxProduct.Designer.cs">
+      <DependentUpon>201806171143088_addTaxProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806191636137_productPriceAdd.cs" />
+    <Compile Include="Migrations\201806191636137_productPriceAdd.Designer.cs">
+      <DependentUpon>201806191636137_productPriceAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806191645389_productPriceAdd1.cs" />
+    <Compile Include="Migrations\201806191645389_productPriceAdd1.Designer.cs">
+      <DependentUpon>201806191645389_productPriceAdd1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806191652463_customerDiscription.cs" />
+    <Compile Include="Migrations\201806191652463_customerDiscription.Designer.cs">
+      <DependentUpon>201806191652463_customerDiscription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -284,6 +300,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806170717269_removeItemNameFeild.resx">
       <DependentUpon>201806170717269_removeItemNameFeild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171143088_addTaxProduct.resx">
+      <DependentUpon>201806171143088_addTaxProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806191636137_productPriceAdd.resx">
+      <DependentUpon>201806191636137_productPriceAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806191645389_productPriceAdd1.resx">
+      <DependentUpon>201806191645389_productPriceAdd1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806191652463_customerDiscription.resx">
+      <DependentUpon>201806191652463_customerDiscription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

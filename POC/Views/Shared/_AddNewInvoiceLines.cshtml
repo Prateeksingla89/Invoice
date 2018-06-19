@@ -17,8 +17,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Item</th>
-                                <th>Description</th>
+                                <th>Item Name</th>
+                                <th>Tax</th>
                                 <th>Qty</th>
                                 <th>Unit Value</th>
                             </tr>
@@ -27,16 +27,14 @@
                             <td>
                                 @Html.DropDownList("ProductName", new SelectList(Model.productsList, "ProductId", "Name"), " Select Product", new { @class = "form-control" })
                             </td>
-                            @*<td> @Html.Editor("ItemName", new { htmlAttributes = new { @class = "form-control" } })</td>*@
-                            <td> @Html.Editor("ItemDescription", new { htmlAttributes = new { @class = "form-control" } })</td>
+                            <td> @Html.Editor("GSTTax", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</td>
                             <td> @Html.Editor("Quantity", new { htmlAttributes = new { @class = "form-control" } })</td>
-                            <td> @Html.Editor("Value", new { htmlAttributes = new { @class = "form-control" } })</td>
-                            <td> @Html.Hidden("InvoiceLineId", new { htmlAttributes = new { @class = "form-control"}})</td>
+                            <td> @Html.Editor("Value", new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })</td>
+                            <td> @Html.Hidden("InvoiceLineId", new { htmlAttributes = new { @class = "form-control" } })</td>
                         </tr>
                         </table>
                 </div>
                 <div class="modal-footer">
-                    @*<button type="submit">Submit</button>*@
                     @Html.HiddenFor(m => m.InvoiceID)
                     @Html.HiddenFor(m => m.InvoiceNumber)
                     <button type="Submit" class="btn btn-danger classAdd"  data-dismiss="modal" >Add Item</button>

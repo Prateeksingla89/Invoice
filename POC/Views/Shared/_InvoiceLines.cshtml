@@ -19,8 +19,8 @@
                         for (int i = 0; i < Model.InvoiceLines.Count; i++)
                         {
                             <tr class="contacts-record-template">
-                                <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>
-                                <td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>
+                                @*<td> @Html.EditorFor(model => model.InvoiceLines[i].ItemName, new { htmlAttributes = new { @id = "ItemName" + i, @class = "form-control" } })</td>*@
+                                @*<td> @Html.EditorFor(model => model.InvoiceLines[i].ItemDescription, new { htmlAttributes = new { @id = "ItemDescription" + i, @class = "form-control" } })</td>*@
                                 <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control" } })</td>
                                 <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control" } })</td>
                             </tr>

@@ -19,6 +19,8 @@ namespace POC.Models
         //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal Value { get; set; }
 
+        [Required]
+        public decimal TotalPrice { get; set; }
 
         [ForeignKey("ParentInvoice")]
         public int InvoiceID { get; set; }

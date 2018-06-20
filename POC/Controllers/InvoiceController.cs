@@ -60,7 +60,7 @@ namespace POC.Controllers
             var viewModel = new InvoiceViewModel
             {
                 
-                InvoiceLines =/*_context.InvoiceLines.ToList(),*/ new List<InvoiceLine>(),
+                InvoiceLines =new List<InvoiceLine>(),//_context.InvoiceLines.ToList(),// 
                 productsList =_context.Products.ToList()
 
             };

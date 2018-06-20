@@ -21,6 +21,7 @@
                                 <th>Tax</th>
                                 <th>Qty</th>
                                 <th>Unit Value</th>
+                                <th>Total Price</th>
                             </tr>
                         </thead>
                         <tr class="contacts-record-template-popup">
@@ -29,7 +30,8 @@
                             </td>
                             <td> @Html.Editor("GSTTax", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</td>
                             <td> @Html.Editor("Quantity", new { htmlAttributes = new { @class = "form-control" } })</td>
-                            <td> @Html.Editor("Value", new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })</td>
+                            <td> @Html.Editor("Value", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</td>
+                            <td> @Html.Editor("Total Price", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</td>
                             <td> @Html.Hidden("InvoiceLineId", new { htmlAttributes = new { @class = "form-control" } })</td>
                         </tr>
                         </table>

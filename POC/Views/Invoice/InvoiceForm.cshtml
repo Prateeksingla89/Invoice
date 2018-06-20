@@ -51,6 +51,7 @@
                 <th>Product Tax</th>
                 <th>Qty</th>
                 <th>Unit Value</th>
+                <th>Total Value</th>
             </tr>
         </thead>
         <tbody>
@@ -60,22 +61,29 @@
 
                 for (int i = 0; i < Model.InvoiceLines.Count; i++)
                 {
-                    <tr class="contacts-record-template">
-                        <td>
-                            @Html.DropDownListFor(model => model.InvoiceLines[i].ProductId, new SelectList(Model.productsList, "ProductId", "Name", Model.InvoiceLines[i].ProductId), new { @id = "ProductId" + i, @class = "form-control productTax", @readonly = "readonly" })
-                        </td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Product.Tax, new { htmlAttributes = new { @id = "Tax" + i, @class = "form-control", @readonly = "readonly" } })</td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control", @readonly = "readonly" } })</td>
-                        <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control", @readonly = "readonly" } })</td>
-
-
-                    </tr>
+            <tr class="contacts-record-template">
+                <td>
+                    @Html.DropDownListFor(model => model.InvoiceLines[i].ProductId, new SelectList(Model.productsList, "ProductId", "Name", Model.InvoiceLines[i].ProductId), new { @id = "ProductId" + i, @class = "form-control productTax", @readonly = "readonly" })
+                </td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].Product.Tax, new { htmlAttributes = new { @id = "Tax" + i, @class = "form-control", @readonly = "readonly" } })</td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].Quantity, new { htmlAttributes = new { @id = "Quantity" + i, @class = "form-control", @readonly = "readonly" } })</td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].Value, new { htmlAttributes = new { @id = "Value" + i, @class = "form-control", @readonly = "readonly" } })</td>
+                <td> @Html.EditorFor(model => model.InvoiceLines[i].TotalPrice, new { htmlAttributes = new { @id = "TotalPrice" + i, @class = "form-control", @readonly = "readonly" } })</td>
+            </tr>
                 }
             }
             else
             {
                 <tr class="contacts-record-template"></tr>
             }
+
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@Html.Editor("BillPrice", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</th>
+                </tr>
 
         </tbody>
     </table>
@@ -119,6 +127,31 @@
             });
         });
 
+        $(document).ready(function () {
+            $('#Quantity').keyup(function () {           
+                var Qty = $(this).val();
+                var Tax = $('#GSTTax').val();
+                var UnitValue = $('#Value').val();
+                if ($('#ProductName').val() === '') {
+                    bootbox.alert({
+                        size: "small",
+                        title: "Alert",
+                        message: "Please Select Product Name First",
+                        callback: function ()
+                        {
+                            $('#Quantity').val("");
+                            $('#Total_Price').val("");
+                        }
+                    })
+                }
+                var tax = ((Qty * UnitValue) * (Tax / 100));
+                var TotalPrice =( tax + (Qty * UnitValue));
+                $('#Total_Price').val(TotalPrice);
+
+
+            });
+        });
+
         $(document).on("click", ".classAdd", function () { //
             var spanValue = $('.values').val();          
             var rowCount = $('.contacts-record-template').length - 1;          
@@ -127,6 +160,7 @@
             var Tax = $('#GSTTax').val();
             var Quantity = $('#Quantity').val();
             var Value = $('#Value').val();
+            var TotalPrice = $('#Total_Price').val();
             var dropdDownValue = $('#ProductName').val();
             var dropDownText = $("#ProductName option:selected").text();
 
@@ -135,12 +169,18 @@
                 '<td> <input class="form-control text-box single-line" data-val="true" data-val-number="The field GST Tax must be a number." data-val-required="The GST Tax field is required." id="Tax' + rowCount + '" name="InvoiceLines[' + rowCount + '].Product.Tax" readonly="readonly" type="text" value=' + Tax + ' ></td>' +
                 '<td> <input class="form-control text-box single-line" data-val="true" data-val-number="The field Quantity must be a number." data-val-required="The Quantity field is required." id="InvoiceLines_' + rowCount + '__Quantity" name="InvoiceLines[' + rowCount + '].Quantity" readonly= "readonly" type="number" value=' + Quantity + ' ></td>' +
                 '<td> <input class="form-control text-box single-line" data-val="true" data-val-number="The field Value must be a number." data-val-required="The Value field is required." id="InvoiceLines_' + rowCount + '__Value" name="InvoiceLines[' + rowCount + '].Value" readonly= "readonly" type="text" value=' + Value + ' ></td>' +
+                '<td> <input class="form-control text-box single-line valid" data-val="true" data-val-number="The field TotalPrice must be a number." data-val-required="The TotalPrice field is required." id="TotalPrice' + rowCount + '" name="InvoiceLines[' + rowCount + '].TotalPrice" readonly="readonly" type="text" value=' + TotalPrice + ' ></td>' +
                 '<td><input data-val="true" data-val-number="The field InvoiceLineId must be a number." data-val-required="The InvoiceLineId field is required." htmlattributes="{ class = form-control }" id="InvoiceLines_' + rowCount + '__InvoiceLineId" name="InvoiceLines[' + rowCount + '].InvoiceLineId" type="hidden" value=' + (rowCount + 1) + '></td>' +
                 '</tr>';
 
             $('#maintable').append(contactdiv); // Adding these controls to Main table class
-
-
+            
+           // To set Empty after submit
+            $('#ProductName').val("");
+            $('#GSTTax').val("");
+            $('#Quantity').val("");
+            $('#Value').val("");
+            $('#Total_Price').val("")
         });
     });
 </script>  
